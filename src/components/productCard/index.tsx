@@ -1,3 +1,4 @@
+import { projectIcon } from '../../assets/Icons';
 import { getRatingNumbers } from '../../utils/helpers';
 import './index.css';
 const ProductCard = (props: any) => {
@@ -11,7 +12,7 @@ const ProductCard = (props: any) => {
         {product?.ratings && (
           <div className='ratingContainer'>
             <span className='ratingText'>{product?.ratings}</span>
-            <img src='Images/rating.png' height='14px' width='auto' />
+            <img src={projectIcon.rating} height='14px' width='auto' />
             <div className='verticalLine'></div>
             <span className='ratingNumberText'>{getRatingNumbers(product?.ratings_count)}</span>
           </div>

@@ -6,6 +6,7 @@ import filterIcon from './filter-icon.svg';
 import sortIcon from './sort-icon.svg';
 import arrowDown from './arrow-down.svg';
 import arrowUp from './arrow-up.svg';
+import rating from './rating.png';
 
 export const projectIcon = {
   back,
@@ -15,5 +16,6 @@ export const projectIcon = {
   filterIcon,
   sortIcon,
   arrowDown,
-  arrowUp
+  arrowUp,
+  rating
 };
