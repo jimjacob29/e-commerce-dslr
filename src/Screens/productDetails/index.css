@@ -1,0 +1,16 @@
+.desktopDetailsPage {
+  display: block;
+}
+
+.mobileDetailPage {
+  display: none;
+}
+
+@media all and (max-width: 480px) {
+  .desktopDetailsPage {
+    display: none;
+  }
+  .mobileDetailPage {
+    display: block;
+  }
+}

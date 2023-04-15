@@ -1,0 +1,90 @@
+.desktopFilterWrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.desktopFilterButtonWrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px;
+}
+
+.filterButtonContainer {
+    display: flex;
+    gap: 16px;
+}
+
+.filterButton {
+    background-color: white;
+    border-radius: 16px;
+    border: none;
+    padding: 8px 16px;
+}
+
+.buttonSelected {
+    background-color: rgb(243, 238, 238);
+}
+
+.filterSelectionContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    padding: 8px 24px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.productCardContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.productCardList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px 20px;
+    width: 160px;
+}
+
+.mobileFilterContainer {
+    display: none;
+}
+
+@media screen and (max-width: 480px) {
+    .desktopFilterWrapper {
+        display: none;
+    }
+    .mobileFilterContainer {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 48px;
+        background-color: #ffffff;
+    }
+    .productCardList {
+        margin-top: 24px;
+        margin-bottom: 48px;
+    }
+    .mobileFilterButtonWrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+    }
+    .mobileSortButton {
+        width: 50%;
+        border-right: 1px solid rgb(168, 164, 164);
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+    }
+}
