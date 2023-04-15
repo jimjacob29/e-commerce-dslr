@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/e-commerce-dslr/static/css/main.bc3e183b.css",
-    "main.js": "/e-commerce-dslr/static/js/main.3703017f.js",
+    "main.js": "/e-commerce-dslr/static/js/main.23902ee7.js",
     "static/media/filter-icon.svg": "/e-commerce-dslr/static/media/filter-icon.4621801fb32507e9e1356c100db15ba4.svg",
     "static/media/arrow-down.svg": "/e-commerce-dslr/static/media/arrow-down.628c244c3a99a322f32289aae7a13a30.svg",
     "static/media/arrow-up.svg": "/e-commerce-dslr/static/media/arrow-up.fee63eff3d9639ef70f8b5978bbd377b.svg",
@@ -12,10 +12,10 @@
     "static/media/search.svg": "/e-commerce-dslr/static/media/search.828d02774ed0505919200f59fad5f3ff.svg",
     "static/media/back.svg": "/e-commerce-dslr/static/media/back.d174d3122c56cee5847dc6df6dd5daf5.svg",
     "main.bc3e183b.css.map": "/e-commerce-dslr/static/css/main.bc3e183b.css.map",
-    "main.3703017f.js.map": "/e-commerce-dslr/static/js/main.3703017f.js.map"
+    "main.23902ee7.js.map": "/e-commerce-dslr/static/js/main.23902ee7.js.map"
   },
   "entrypoints": [
     "static/css/main.bc3e183b.css",
-    "static/js/main.3703017f.js"
+    "static/js/main.23902ee7.js"
   ]
 }
