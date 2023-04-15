@@ -1,35 +1,36 @@
-import { useState, useEffect, useContext } from 'react';
-import { productData } from '../../utils/const/productData';
-import ProductCard from '../../components/productCard';
+import { useContext, useEffect, useState } from 'react';
+import Modal from 'react-modal';
 import { useHistory } from 'react-router-dom';
 import { projectIcon } from '../../assets/Icons';
-import { MainContext } from '../../utils/contextData';
 import MobileFilterModal from '../../components/mobileFilterModal';
-import Modal from 'react-modal';
-import './index.css';
 import MobileSortModal from '../../components/mobileSortModal';
+import ProductCard from '../../components/productCard';
+import { productData } from '../../utils/const/productData';
+import { MainContext } from '../../utils/contextData';
+import { MainContextType, ProductType } from '../../utils/propertyType';
+import './index.css';
 const Home = () => {
-  const [data, setData] = useState<any>(productData);
+  const [data, setData] = useState<ProductType[]>(productData);
 
   const [brandSelected, setBrandSelected] = useState(false);
   const [categorySelected, setCategorySelected] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [brands, setBrands] = useState<any>([]);
-  const [category, setCategory] = useState<any>([]);
+  const [brands, setBrands] = useState<string[] | []>([]);
+  const [category, setCategory] = useState<string[] | []>([]);
   const [mobileSortButton, setMobileSortButton] = useState(false);
   const [mobileFilterButton, setMobileFilterButton] = useState(false);
   const history = useHistory();
-  const { selectedBrands, setSelectedBrands, selectedCategory, setSelectedCategory, sortValue, setSortValue }: any =
+  const { selectedBrands, setSelectedBrands, selectedCategory, setSelectedCategory, sortValue, setSortValue }: MainContextType =
     useContext(MainContext);
 
-  const getSortFunction = (tempSortValue: any) => {
+  const getSortFunction = (tempSortValue: string) => {
     switch (tempSortValue) {
       case `Price(low to high)`:
-        return (a: any, b: any) => a.price - b.price;
+        return (a: ProductType, b: ProductType) => a.price - b.price;
       case 'Price(high to low)':
-        return (a: any, b: any) => b.price - a.price;
+        return (a: ProductType, b: ProductType) => b.price - a.price;
       case 'Ratings(high to low)':
-        return (a: any, b: any) => b.ratings - a.ratings;
+        return (a: ProductType, b: ProductType) => b.ratings - a.ratings;
     }
   };
   const handleData = (
@@ -39,10 +40,10 @@ const Home = () => {
   ) => {
     let tempData = productData;
     if (tempSelectedBrand.length > 0) {
-      tempData = tempData.filter((item: any) => tempSelectedBrand.includes(item.brand));
+      tempData = tempData.filter((item: ProductType) => tempSelectedBrand.includes(item.brand));
     }
     if (tempSelectedCategory.length > 0) {
-      tempData = tempData.filter((item: any) => tempSelectedCategory.includes(item.category));
+      tempData = tempData.filter((item: ProductType) => tempSelectedCategory.includes(item.category));
     }
     if (tempSortValue) {
       const sortFunction = getSortFunction(tempSortValue);
@@ -67,7 +68,7 @@ const Home = () => {
     const { value } = e.target;
     let tempSelectedBrand;
     if (selectedBrands.includes(value)) {
-      tempSelectedBrand = selectedBrands.filter((item: any) => item !== value);
+      tempSelectedBrand = selectedBrands.filter((item: string) => item !== value);
       setSelectedBrands(tempSelectedBrand);
     } else {
       tempSelectedBrand = [...selectedBrands, value];
@@ -79,7 +80,7 @@ const Home = () => {
     const { value } = e.target;
     let tempSelectedCategory;
     if (selectedCategory.includes(value)) {
-      tempSelectedCategory = selectedCategory.filter((item: any) => item !== value);
+      tempSelectedCategory = selectedCategory.filter((item: string) => item !== value);
       setSelectedCategory(tempSelectedCategory);
     } else {
       tempSelectedCategory = [...selectedCategory, value];
@@ -96,7 +97,7 @@ const Home = () => {
       setCategorySelected(!categorySelected);
     }
   };
-  const handleItemClick = (product: any) => {
+  const handleItemClick = (product: ProductType) => {
     history.push({
       pathname: '/product-details',
       state: { product }
@@ -104,13 +105,13 @@ const Home = () => {
   };
   useEffect(() => {
     setLoading(true);
-    const tempBrands = productData.reduce((acc: any, item: any) => {
+    const tempBrands = productData.reduce((acc: string[], item: any) => {
       if (!acc.includes(item.brand)) {
         acc.push(item.brand);
       }
       return acc;
     }, []);
-    const tempCategory = productData.reduce((acc: any, item: any) => {
+    const tempCategory = productData.reduce((acc: string[], item: any) => {
       if (!acc.includes(item.category)) {
         acc.push(item.category);
       }
@@ -164,7 +165,7 @@ const Home = () => {
         </div>
         <div className='filterSelectionContainer'>
           {brandSelected &&
-            (brands || []).map((brand: any, index: number) => (
+            (brands || []).map((brand: string, index: number) => (
               <>
                 <input
                   type='checkbox'
@@ -178,7 +179,7 @@ const Home = () => {
               </>
             ))}
           {categorySelected &&
-            (category || []).map((category: any, index: number) => (
+            (category || []).map((category: string, index: number) => (
               <>
                 <input
                   type='checkbox'
@@ -195,7 +196,7 @@ const Home = () => {
       </div>
       <div>
         <ul className='productCardContainer'>
-          {data.map((product: any, index: number) => (
+          {data.map((product: ProductType, index: number) => (
             <li className='productCardList' key={index} onClick={() => handleItemClick(product)}>
               <ProductCard product={product} />
             </li>

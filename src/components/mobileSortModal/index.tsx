@@ -1,4 +1,8 @@
-const MobileSortModal = ({ sortValue, handleSortChange }: any) => {
+interface Props {
+  sortValue: string;
+  handleSortChange: (e: any) => void;
+}
+const MobileSortModal = ({ sortValue, handleSortChange }: Props) => {
   return (
     <div className='mobileSortConatiner'>
       <label>

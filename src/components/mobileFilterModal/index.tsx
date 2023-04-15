@@ -1,4 +1,15 @@
 import { projectIcon } from '../../assets/Icons';
+interface Props {
+  handleFilterClick: (value: boolean) => void;
+  brandSelected: boolean;
+  categorySelected: boolean;
+  brands: string[];
+  handleBrandSelection: (e: any) => void;
+  selectedBrands: string[];
+  category: string[];
+  selectedCategory: string[];
+  handleCategorySelection: (e: any) => void;
+}
 const MobileFilterModal = ({
   handleFilterClick,
   brandSelected,
@@ -9,7 +20,7 @@ const MobileFilterModal = ({
   category,
   selectedCategory,
   handleCategorySelection
-}: any) => {
+}: Props) => {
   return (
     <>
       <div className='filterButtonContainer'>
@@ -35,7 +46,7 @@ const MobileFilterModal = ({
       </div>
       <div className='filterSelectionContainer'>
         {brandSelected &&
-          (brands || []).map((brand: any, index: number) => (
+          (brands || []).map((brand: string, index: number) => (
             <div key={brand} className='mobileSortData'>
               <input
                 type='checkbox'
@@ -49,7 +60,7 @@ const MobileFilterModal = ({
             </div>
           ))}
         {categorySelected &&
-          (category || []).map((category: any, index: number) => (
+          (category || []).map((category: string, index: number) => (
             <div key={category}>
               <input
                 type='checkbox'

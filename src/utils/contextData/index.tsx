@@ -1,9 +1,9 @@
-import React, { useState, createContext } from 'react';
+import { createContext, useState } from 'react';
 export const MainContext: any = createContext({});
 export const MainContextProvider = (props: any) => {
   const [sortValue, setSortValue] = useState('Ratings(high to low)');
-  const [selectedBrands, setSelectedBrands] = useState<any>([]);
-  const [selectedCategory, setSelectedCategory] = useState<any>([]);
+  const [selectedBrands, setSelectedBrands] = useState<string[] | []>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string[] | []>([]);
 
   const value = {
     selectedBrands,

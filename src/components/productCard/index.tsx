@@ -1,7 +1,11 @@
 import { projectIcon } from '../../assets/Icons';
 import { getRatingNumbers } from '../../utils/helpers';
+import { ProductType } from '../../utils/propertyType';
 import './index.css';
-const ProductCard = (props: any) => {
+ interface Props {
+  product: ProductType;
+ }
+const ProductCard = (props: Props) => {
   const { product } = props;
   return (
     <div className='productCardMainWrapper'>

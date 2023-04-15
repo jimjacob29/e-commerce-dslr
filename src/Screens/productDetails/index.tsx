@@ -1,7 +1,6 @@
-import DeskTopDetailsPage from '../desktopDetailsPage';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
-import { useLocation, useHistory } from 'react-router-dom';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { useHistory, useLocation } from 'react-router-dom';
 import { projectIcon } from '../../assets/Icons';
 import './index.css';
 const ProductDetails = () => {
@@ -29,7 +28,7 @@ const ProductDetails = () => {
       <div className='detailsContainerWrapper'>
         <div className='corouselContainer'>
           <Carousel width='70%' showThumbs={false} centerMode dynamicHeight>
-            {product?.images?.map((image: any) => (
+            {product?.images?.map((image: string) => (
               <div key={image}>
                 <img src={image} />
               </div>
