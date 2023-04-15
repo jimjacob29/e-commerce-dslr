@@ -4,6 +4,8 @@ import search from './search.svg';
 import shoppingBag from './shopping-bag.svg';
 import filterIcon from './filter-icon.svg';
 import sortIcon from './sort-icon.svg';
+import arrowDown from './arrow-down.svg';
+import arrowUp from './arrow-up.svg';
 
 export const projectIcon = {
   back,
@@ -11,5 +13,7 @@ export const projectIcon = {
   search,
   shoppingBag,
   filterIcon,
-  sortIcon
+  sortIcon,
+  arrowDown,
+  arrowUp
 };

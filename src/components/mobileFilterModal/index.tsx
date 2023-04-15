@@ -1,3 +1,4 @@
+import { projectIcon } from '../../assets/Icons';
 const MobileFilterModal = ({
   handleFilterClick,
   brandSelected,
@@ -16,13 +17,20 @@ const MobileFilterModal = ({
           onClick={() => handleFilterClick(true)}
           className={`filterButton ${brandSelected ? 'buttonSelected' : ''}`}
         >
-          Brand
+          Brand{' '}
+          <img src={brandSelected ? projectIcon.arrowUp : projectIcon.arrowDown} height='10px' width='auto' alt='v' />
         </button>
         <button
           onClick={() => handleFilterClick(false)}
           className={`filterButton ${categorySelected ? 'buttonSelected' : ''}`}
         >
-          Categories
+          Categories{' '}
+          <img
+            src={categorySelected ? projectIcon.arrowUp : projectIcon.arrowDown}
+            height='10px'
+            width='auto'
+            alt='v'
+          />
         </button>
       </div>
       <div className='filterSelectionContainer'>
