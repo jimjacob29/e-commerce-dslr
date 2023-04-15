@@ -21,6 +21,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
 }
 
 .brandHeading {
@@ -35,8 +36,8 @@
   gap: 24px;
   align-items: center;
   padding-right: 16px;
+  cursor: pointer;
 }
-
 
 .detailsContainerWrapper {
   display: flex;
@@ -44,21 +45,25 @@
   width: 100vw;
   padding: 16px;
   justify-content: center;
-  margin-top: 50px;;
+  margin-top: 50px;
 }
+
 .corouselContainer {
   height: 40vh;
   width: 50%;
   position: relative;
 }
+
 .detailsContainer {
   padding: 32px;
 }
+
 .inclusiveText {
   font-size: 14px;
   color: #03a685;
   font-weight: 700;
 }
+
 .buttonContainerDetailsPage {
   display: flex;
   flex-direction: row;
@@ -66,6 +71,7 @@
   margin-top: 16px;
   gap: 8px;
 }
+
 .addToCartButton {
   display: flex;
   justify-content: center;
@@ -76,7 +82,9 @@
   gap: 8px;
   border: 1px solid #ff3e6c;
   border-radius: 4px;
+  cursor: pointer;
 }
+
 .buyNowButton {
   display: flex;
   justify-content: center;
@@ -87,15 +95,30 @@
   gap: 8px;
   border: 1px solid #d4d5d9;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 @media all and (max-width: 480px) {
   .detailsContainerWrapper {
     flex-direction: column;
-    align-items: center;
+    overflow: auto;
+    overflow-x: hidden;
   }
   .corouselContainer {
     width: 100%;
     margin-left: 50px;
+  }
+  .buttonContainerDetailsPage {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+  }
+  .addToCartButton {
+    width: 60%;
+  }
+  .buyNowButton {
+    width: 40%;
   }
 }

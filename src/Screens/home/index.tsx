@@ -1,23 +1,42 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { productData } from '../../utils/const/productData';
 import ProductCard from '../../components/productCard';
 import { useHistory } from 'react-router-dom';
 import { projectIcon } from '../../assets/Icons';
+import { MainContext } from '../../utils/contextData';
+import MobileFilterModal from '../../components/mobileFilterModal';
+import Modal from 'react-modal';
 import './index.css';
+import MobileSortModal from '../../components/mobileSortModal';
 const Home = () => {
   const [data, setData] = useState<any>(productData);
+
   const [brandSelected, setBrandSelected] = useState(false);
   const [categorySelected, setCategorySelected] = useState(false);
   const [loading, setLoading] = useState(true);
   const [brands, setBrands] = useState<any>([]);
   const [category, setCategory] = useState<any>([]);
-  const [selectedBrands, setSelectedBrands] = useState<any>([]);
-  const [selectedCategory, setSelectedCategory] = useState<any>([]);
   const [mobileSortButton, setMobileSortButton] = useState(false);
   const [mobileFilterButton, setMobileFilterButton] = useState(false);
   const history = useHistory();
+  const { selectedBrands, setSelectedBrands, selectedCategory, setSelectedCategory, sortValue, setSortValue }: any =
+    useContext(MainContext);
 
-  const handleData = (tempSelectedBrand = selectedBrands, tempSelectedCategory = selectedCategory) => {
+  const getSortFunction = (tempSortValue: any) => {
+    switch (tempSortValue) {
+      case `Price(low to high)`:
+        return (a: any, b: any) => a.price - b.price;
+      case 'Price(high to low)':
+        return (a: any, b: any) => b.price - a.price;
+      case 'Ratings(high to low)':
+        return (a: any, b: any) => b.ratings - a.ratings;
+    }
+  };
+  const handleData = (
+    tempSelectedBrand = selectedBrands,
+    tempSelectedCategory = selectedCategory,
+    tempSortValue = sortValue
+  ) => {
     let tempData = productData;
     if (tempSelectedBrand.length > 0) {
       tempData = tempData.filter((item: any) => tempSelectedBrand.includes(item.brand));
@@ -25,7 +44,15 @@ const Home = () => {
     if (tempSelectedCategory.length > 0) {
       tempData = tempData.filter((item: any) => tempSelectedCategory.includes(item.category));
     }
+    if (tempSortValue) {
+      const sortFunction = getSortFunction(tempSortValue);
+      tempData.sort(sortFunction);
+    }
     setData(tempData);
+  };
+  const handleSortChange = (e: any) => {
+    setSortValue(e.target.value);
+    handleData(selectedBrands, selectedCategory, e.target.value);
   };
   const handleMobileBottomButton = (isSort: boolean) => {
     if (isSort) {
@@ -50,12 +77,15 @@ const Home = () => {
   };
   const handleCategorySelection = (e: any) => {
     const { value } = e.target;
+    let tempSelectedCategory;
     if (selectedCategory.includes(value)) {
-      setSelectedCategory(selectedCategory.filter((item: any) => item !== value));
+      tempSelectedCategory = selectedCategory.filter((item: any) => item !== value);
+      setSelectedCategory(tempSelectedCategory);
     } else {
-      setSelectedCategory([...selectedCategory, value]);
+      tempSelectedCategory = [...selectedCategory, value];
+      setSelectedCategory(tempSelectedCategory);
     }
-    handleData();
+    handleData(selectedBrands, tempSelectedCategory);
   };
   const handleFilterClick = (isBrand: boolean) => {
     if (isBrand) {
@@ -86,6 +116,7 @@ const Home = () => {
       }
       return acc;
     }, []);
+    handleData(selectedBrands, selectedCategory, sortValue);
     setBrands(tempBrands);
     setCategory(tempCategory);
     setLoading(false);
@@ -112,10 +143,10 @@ const Home = () => {
             </button>
           </div>
           <div>
-            <select>
-              <option>Price(low to high)</option>
-              <option>Price(high to low)</option>
-              <option>Ratings(high to low)</option>
+            <select onChange={handleSortChange} value={sortValue}>
+              <option value='Ratings(high to low)'>Ratings(high to low)</option>
+              <option value='Price(low to high)'>Price(low to high)</option>
+              <option value='Price(high to low)'>Price(high to low)</option>
             </select>
           </div>
         </div>
@@ -170,6 +201,32 @@ const Home = () => {
             <span>Filter</span>
           </div>
         </div>
+        <Modal
+          isOpen={mobileSortButton}
+          onRequestClose={() => {
+            setMobileSortButton(false);
+          }}
+        >
+          <MobileSortModal sortValue={sortValue} handleSortChange={handleSortChange} />
+        </Modal>
+        <Modal
+          isOpen={mobileFilterButton}
+          onRequestClose={() => {
+            setMobileFilterButton(false);
+          }}
+        >
+          <MobileFilterModal
+            handleCategorySelection={handleCategorySelection}
+            selectedCategory={selectedCategory}
+            category={category}
+            selectedBrands={selectedBrands}
+            handleBrandSelection={handleBrandSelection}
+            brands={brands}
+            categorySelected={categorySelected}
+            brandSelected={brandSelected}
+            handleFilterClick={handleFilterClick}
+          />
+        </Modal>
       </div>
     </>
   );
