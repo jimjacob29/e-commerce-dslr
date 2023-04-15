@@ -1,7 +1,7 @@
 export const productData = [
   {
     id: 1,
-    Product_title: "Women's Printed T-shirt",
+    product_title: "Women's Printed T-shirt",
     brand: 'Huetrap',
     category: 'T-shirt',
     description: 'printed t-shirt',

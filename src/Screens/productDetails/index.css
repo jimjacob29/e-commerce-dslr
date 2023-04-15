@@ -1,16 +1,101 @@
-.desktopDetailsPage {
-  display: block;
+.desktopDetailsMainWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
 }
 
-.mobileDetailPage {
-  display: none;
+.topNavContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.backAndBrandContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brandHeading {
+  font-size: 16px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.iconContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: center;
+  padding-right: 16px;
+}
+
+
+.detailsContainerWrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  padding: 16px;
+  justify-content: center;
+  margin-top: 50px;;
+}
+.corouselContainer {
+  height: 40vh;
+  width: 50%;
+  position: relative;
+}
+.detailsContainer {
+  padding: 32px;
+}
+.inclusiveText {
+  font-size: 14px;
+  color: #03a685;
+  font-weight: 700;
+}
+.buttonContainerDetailsPage {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 16px;
+  gap: 8px;
+}
+.addToCartButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  background-color: #ff3e6c;
+  color: white;
+  gap: 8px;
+  border: 1px solid #ff3e6c;
+  border-radius: 4px;
+}
+.buyNowButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  background-color: white;
+  color: #3e4152;
+  gap: 8px;
+  border: 1px solid #d4d5d9;
+  border-radius: 4px;
 }
 
 @media all and (max-width: 480px) {
-  .desktopDetailsPage {
-    display: none;
+  .detailsContainerWrapper {
+    flex-direction: column;
+    align-items: center;
   }
-  .mobileDetailPage {
-    display: block;
+  .corouselContainer {
+    width: 100%;
+    margin-left: 50px;
   }
 }
